@@ -2159,20 +2159,20 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="fname">Nama</label>
-                <input type="text" id="fname" class="form-control" placeholder="Nama kamu" required />
+                <input type="text" id="fname" name="name" class="form-control" placeholder="Nama kamu" required />
               </div>
               <div class="form-group">
                 <label for="femail">Email</label>
-                <input type="email" id="femail" class="form-control" placeholder="email@domain.com" required />
+                <input type="email" id="femail" name="email" class="form-control" placeholder="email@domain.com" required />
               </div>
             </div>
             <div class="form-group">
               <label for="fsubject">Subjek</label>
-              <input type="text" id="fsubject" class="form-control" placeholder="Topik pesan" />
+              <input type="text" id="fsubject" name="subject" class="form-control" placeholder="Topik pesan" />
             </div>
             <div class="form-group">
               <label for="fmessage">Pesan</label>
-              <textarea id="fmessage" class="form-control" rows="5" placeholder="Tuliskan pesanmu di sini..." required></textarea>
+              <textarea id="fmessage" name="message" class="form-control" rows="5" placeholder="Tuliskan pesanmu di sini..." required></textarea>
             </div>
             <div class="form-submit">
               <span class="form-note">* Semua field wajib diisi</span>
@@ -2207,6 +2207,8 @@
     <span id="toastMsg">Pesan berhasil terkirim!</span>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <!-- AOS Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
@@ -2219,6 +2221,10 @@
       easing: 'ease-out-cubic',
       once: true,
       offset: 60,
+    });
+
+    emailjs.init({
+    publicKey: "pRBQa-OZOvxfw5VZJ"
     });
 
     /* =============================================
@@ -2346,21 +2352,46 @@
     const toast       = document.getElementById('toast');
     const toastMsg    = document.getElementById('toastMsg');
 
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener("submit", function(e) {
+
       e.preventDefault();
 
-      // Simulate sending (ganti dengan fetch() ke backend jika diperlukan)
+      
       const btn = contactForm.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
 
-      setTimeout(() => {
+       emailjs.sendForm(
+        "service_vr2cb9b",
+        "template_904rtdd",
+        this
+    )
+    .then(() => {
+
         btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Kirim Pesan';
+
+        btn.innerHTML =
+            '<i class="fa-solid fa-paper-plane"></i> Kirim Pesan';
+
         contactForm.reset();
-        showToast('Pesan berhasil terkirim! Saya akan membalas segera. 🎉');
-      }, 1500);
+
+        showToast("Pesan berhasil dikirim! 🎉");
+
+    })
+    .catch((error) => {
+
+        console.error(error);
+
+        btn.disabled = false;
+
+        btn.innerHTML =
+            '<i class="fa-solid fa-paper-plane"></i> Kirim Pesan';
+
+        showToast("Gagal mengirim pesan.");
+
     });
+
+});
 
     function showToast(message) {
       toastMsg.textContent = message;
