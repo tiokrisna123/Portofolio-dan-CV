@@ -2323,26 +2323,41 @@
     /* =============================================
        PORTFOLIO FILTER
        ============================================= */
-    const filterBtns    = document.querySelectorAll('.filter-btn');
-    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const portfolioCards = document.querySelectorAll(".portfolio-card");
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    filterButtons.forEach(button => {
 
-        const filter = btn.getAttribute('data-filter');
+        button.addEventListener("click", () => {
 
-        portfolioCards.forEach(card => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            card.style.display = '';
-            card.style.animation = 'fadeIn 0.4s ease';
-          } else {
-            card.style.display = 'none';
-          }
+            // active button
+            filterButtons.forEach(btn =>
+                btn.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            const filter = button.dataset.filter;
+
+            portfolioCards.forEach(card => {
+
+                if (
+                    filter === "all" ||
+                    card.dataset.category === filter
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
         });
-      });
+
     });
 
     /* =============================================
