@@ -1,0 +1,172 @@
+/* =============================================================
+   portfolio.css
+   Portfolio section: filter buttons, grid kartu project,
+   thumbnail, overlay link, body kartu, dan tech stack tags.
+   ============================================================= */
+
+.portfolio-section {
+  background: var(--bg-secondary);
+}
+
+.portfolio-filter {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.filter-btn {
+  padding: 7px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.portfolio-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--anim-ease),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    opacity 0.25s ease;
+  cursor: pointer;
+}
+
+/* Transisi filter (js/portfolio.js): fade out → layout update → fade in */
+.portfolio-card.is-filtering {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.portfolio-card.is-hiding {
+  display: none;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+}
+
+.portfolio-card-thumb {
+  aspect-ratio: 16/9;
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-thumb-icon {
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.3;
+  transition: all 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-thumb-icon {
+  opacity: 0.6;
+  transform: scale(1.1);
+}
+
+.portfolio-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.8), transparent);
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.portfolio-card-links {
+  display: flex;
+  gap: 10px;
+}
+
+.portfolio-link-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.portfolio-link-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
+.portfolio-card-body {
+  padding: 20px;
+}
+
+.portfolio-card-cat {
+  font-size: 0.7rem;
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.portfolio-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.portfolio-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.portfolio-card-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.stack-tag {
+  font-size: 0.7rem;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+}

@@ -1,0 +1,260 @@
+/* =============================================================
+   hero.css
+   Hero section: layout, background circles, animasi masuk,
+   foto profil dengan ring dekoratif, badge statistik,
+   dan scroll indicator.
+   ============================================================= */
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background circles */
+.hero-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-bg-circle-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+}
+
+.hero-bg-circle-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+  bottom: 0;
+  left: -50px;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.3s forwards;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.5s forwards;
+}
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.6s forwards;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 460px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.7s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.9s forwards;
+}
+
+/* Profile image */
+.hero-image-wrap {
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.8s forwards, float 6s ease-in-out infinite 0.8s;
+}
+
+/* Hover foto: zoom sangat halus + shadow sedikit menguat.
+   Zoom di <img> agar tidak bentrok dengan animasi float di wrap. */
+.hero-image-inner img {
+  transition: transform 0.6s var(--anim-ease);
+}
+
+.hero-image-ring {
+  transition: box-shadow 0.4s ease;
+}
+
+.hero-image-wrap:hover .hero-image-inner img {
+  transform: scale(1.03);
+}
+
+.hero-image-wrap:hover .hero-image-ring {
+  box-shadow: 0 16px 40px rgba(201, 168, 76, 0.15);
+}
+
+.hero-image-ring {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), transparent 60%);
+  padding: 2px;
+  position: relative;
+}
+
+.hero-image-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Placeholder avatar (dipakai jika foto profil belum ada) */
+.hero-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hero-image-ring::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+.hero-image-ring::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 1px dashed rgba(201,168,76,0.15);
+  animation: spin 20s linear infinite;
+}
+
+.hero-stat-badge {
+  position: absolute;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.hero-stat-badge-1 {
+  bottom: 20px;
+  left: -25px;
+}
+
+.hero-stat-badge-2 {
+  top: 188px;
+  right: -25px;
+}
+
+.badge-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.badge-text strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.badge-text span {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-family: 'DM Mono', monospace;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.5s forwards;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: pulse 2s ease infinite;
+}

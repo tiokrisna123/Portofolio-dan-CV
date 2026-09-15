@@ -1,0 +1,57 @@
+/* =============================================================
+   responsive.css
+   Media queries untuk tablet (<=1024px), mobile (<=768px),
+   dan layar kecil (<=480px). Load terakhir agar override.
+   ============================================================= */
+
+@media (max-width: 1024px) {
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid     { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links  { display: none; }
+  .hamburger  { display: flex; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+  .hero-image-wrap { order: -1; display: flex; justify-content: center; }
+  .hero-image-ring { width: 220px; height: 220px; }
+  .hero-tag   { justify-content: center; }
+  .hero-desc  { margin-inline: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-stat-badge-1 { bottom: -10px; left: -10px; }
+  .hero-stat-badge-2 { top: -10px; right: -10px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row   { grid-template-columns: 1fr; }
+  .section    { padding: 70px 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-stat-badge { display: none; }
+  .soft-skills-grid { grid-template-columns: 1fr; }
+}
+
+/* =============================================
+   MOBILE — animasi lebih ringan
+   ============================================= */
+@media (max-width: 768px) {
+  /* Reveal lebih pendek, geser samping diganti naik (lebih halus di layar kecil) */
+  [data-aos].reveal { transition-duration: 500ms; }
+  .reveal-left,
+  .reveal-right { transform: translateY(24px); }
+}
+
+/* =============================================
+   PERANGKAT TOUCH — hover transform dinonaktifkan
+   agar efek tidak "nyangkut" setelah tap
+   ============================================= */
+@media (hover: none) {
+  .btn:hover { transform: none; }
+  .soft-skill-card:hover,
+  .about-info-item:hover,
+  .social-link:hover { transform: none; }
+  .timeline-item:hover .timeline-card { transform: none; }
+  .footer-back-top:hover { transform: none; }
+  .portfolio-card:hover { transform: translateY(-4px); }
+}

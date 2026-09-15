@@ -1,0 +1,97 @@
+/* =============================================================
+   about.css
+   About section: grid dua kolom (data diri + deskripsi),
+   info list, dan interest chips.
+   ============================================================= */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-info-list {
+  list-style: none;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-info-item {
+  display: flex;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+.about-info-item:hover {
+  border-color: var(--border);
+  transform: translateX(4px);
+}
+
+.about-info-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.about-info-content label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'DM Mono', monospace;
+}
+
+.about-info-content p {
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.about-right p {
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.9;
+  margin-bottom: 16px;
+  font-size: 1.02rem;
+}
+
+.interest-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.chip {
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  transition: all 0.3s ease;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.03em;
+}
+
+.chip:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}

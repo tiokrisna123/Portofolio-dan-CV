@@ -1,0 +1,110 @@
+/* =============================================================
+   skills.css
+   Skills section: background, grid dua kolom, skill bar,
+   dan kartu soft skills.
+   ============================================================= */
+
+.skills-section {
+  background: var(--bg-secondary);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 60px;
+}
+
+.skills-col-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skills-col-title i {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.skill-item {
+  margin-bottom: 22px;
+}
+
+.skill-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.skill-name {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.skill-pct {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+}
+
+.skill-bar-track {
+  height: 4px;
+  background: var(--border-subtle);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  width: 0;
+  /* Stagger delay diatur skills.js via inline style */
+  transition: width 1s var(--anim-ease);
+}
+
+/* Soft skills icons */
+.soft-skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.soft-skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.soft-skill-card:hover {
+  border-color: var(--border);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.soft-skill-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.soft-skill-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+}

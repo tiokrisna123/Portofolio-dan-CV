@@ -1,0 +1,138 @@
+/* =============================================================
+   experience.css
+   Experience section: timeline vertikal dengan dot, kartu,
+   badge, dan tags.
+   ============================================================= */
+
+.timeline {
+  position: relative;
+  margin-top: 60px;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  /* Reveal: garis tumbuh dari atas ke bawah (dipicu js/main.js) */
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1s var(--anim-ease) 0.1s;
+}
+
+.timeline.is-visible::before {
+  transform: scaleY(1);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -36px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg-primary);
+  transition: all 0.3s ease;
+  transition-delay: var(--dot-delay, 0ms);
+  /* Reveal: dot muncul satu per satu dengan stagger (js/main.js) */
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.timeline-dot.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.timeline-item:hover .timeline-dot {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(201,168,76,0.5);
+  transition-delay: 0ms;
+}
+
+.timeline-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-card {
+  border-color: var(--border);
+  transform: translateX(6px);
+  box-shadow: var(--shadow);
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.timeline-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.timeline-badge {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.timeline-company {
+  font-size: 0.88rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.timeline-period {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 14px;
+}
+
+.timeline-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.timeline-tag {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+}
